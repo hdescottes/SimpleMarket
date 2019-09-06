@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Market List</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+</head>
+<body>
+    <h1>Market List</h1>
+    <a href="marketList">Market List</a>
+    <br/><br/>
+    <div>
+        <table border="1">
+            <tr>
+                <th>Item</th>
+                <th>Price (£)</th>
+            </tr>
+            <tr th:each ="item : ${items.entrySet()}">
+                <td th:value="${item.key}">...</td>
+                <td th:utext="${item.value}">...</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
