@@ -7,7 +7,6 @@
 </head>
 <body>
     <h1>Market List</h1>
-    <a href="marketList">Market List</a>
     <br/><br/>
     <div>
         <table border="1">
@@ -16,7 +15,7 @@
                 <th>Price (£)</th>
             </tr>
             <tr th:each ="item : ${items.entrySet()}">
-                <td th:value="${item.key}">...</td>
+                <td th:utext="${item.key}">...</td>
                 <td th:utext="${item.value}">...</td>
             </tr>
         </table>

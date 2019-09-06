@@ -1,6 +1,7 @@
 package com.test.example.controller;
 
 import com.test.example.model.FruitDto;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,7 +10,7 @@ import java.util.HashMap;
 
 import static com.test.example.constant.FruitConstants.*;
 
-@RestController
+@Controller
 public class DisplayItemsController {
 
     private final FruitDto fruitDto;
