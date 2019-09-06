@@ -1,0 +1,10 @@
+############################################
+# Private properties - should not be changed
+############################################
+spring:
+  application.name: test_bnp
+  jackson.mapper.sort-properties-alphabetically: true
+
+######################################
+# Public properties - must be modified
+######################################
