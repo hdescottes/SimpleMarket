@@ -2,7 +2,7 @@
 # Private properties - should not be changed
 ############################################
 spring:
-  application.name: test_bnp
+  application.name: SimpleMarket
   jackson.mapper.sort-properties-alphabetically: true
 
 ######################################
