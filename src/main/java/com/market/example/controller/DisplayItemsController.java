@@ -1,6 +1,6 @@
-package com.test.example.controller;
+package com.market.example.controller;
 
-import com.test.example.service.MarketService;
+import com.market.example.service.MarketService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +15,7 @@ public class DisplayItemsController {
     }
 
     @GetMapping(value = "/")
-    public String getItems(Model model) {
+    public String retrieveMarketItems(Model model) {
         model.addAttribute("items", marketService.createMarket());
         return "marketList";
     }

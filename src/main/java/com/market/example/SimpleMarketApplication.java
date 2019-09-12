@@ -1,4 +1,4 @@
-package com.test.example;
+package com.market.example;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

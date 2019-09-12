@@ -1,4 +1,4 @@
-package com.test.example.model;
+package com.market.example.model;
 
 import org.springframework.stereotype.Component;
 

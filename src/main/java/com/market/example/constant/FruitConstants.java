@@ -1,4 +1,4 @@
-package com.test.example.constant;
+package com.market.example.constant;
 
 /**
  * Constants used for the supermarket
