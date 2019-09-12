@@ -13,12 +13,18 @@
             <tr>
                 <th>Item</th>
                 <th>Price (£)</th>
+                <th>Purchase number</th>
             </tr>
             <tr th:each ="item : ${items.entrySet()}">
                 <td th:utext="${item.key}">...</td>
                 <td th:utext="${item.value}">...</td>
+                <td><input type="number" name="Number" min="0"></td>
             </tr>
         </table>
+    </div>
+    <br><br/>
+    <div>
+        <input type="submit" value="Submit"/>
     </div>
 </body>
 </html>

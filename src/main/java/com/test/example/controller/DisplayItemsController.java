@@ -1,35 +1,22 @@
 package com.test.example.controller;
 
-import com.test.example.model.FruitDto;
+import com.test.example.service.MarketService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.HashMap;
-
-import static com.test.example.constant.FruitConstants.*;
 
 @Controller
 public class DisplayItemsController {
 
-    private final FruitDto fruitDto;
+    private MarketService marketService;
 
-    public DisplayItemsController(FruitDto fruitDto) {
-        this.fruitDto = fruitDto;
-    }
-
-    private HashMap<String, Double> market() {
-        HashMap<String, Double> items = new HashMap<>();
-        items.put(fruitDto.setName("Apple").getName(), fruitDto.setPrice(APPLE_PRICE).getPrice());
-        items.put(fruitDto.setName("Orange").getName(), fruitDto.setPrice(ORANGE_PRICE).getPrice());
-        items.put(fruitDto.setName("Watermelon").getName(), fruitDto.setPrice(WATERMELON_PRICE).getPrice());
-        return items;
+    public DisplayItemsController(MarketService marketService) {
+        this.marketService = marketService;
     }
 
     @GetMapping(value = "/")
     public String getItems(Model model) {
-        model.addAttribute("items", market());
+        model.addAttribute("items", marketService.createMarket());
         return "marketList";
     }
 }
