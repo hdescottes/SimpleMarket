@@ -4,13 +4,12 @@
 
 We are a national supermarket chain that is interested in starting to use special offers in our stores. We stock the following products:
 
-Item Price (£)
+| Item       | Price (£) |
+|------------|:---------:|
+| Apple      | 0.20      |
+| Orange     | 0.50      |
+| Watermelon | 0.80      |
 
-Apple 0.20
-
-Orange 0.50
-
-Watermelon 0.80
 
 We would like to allow the following special offers:
 
@@ -20,13 +19,12 @@ We would like to allow the following special offers:
 
 We would like to see the output for an example basket containing the following items:
 
-Item Quantity
+| Item       | Quantity  |
+|------------|:---------:|
+| Apple      | 4         |
+| Orange     | 3         |
+| Watermelon | 5         |
 
-Apple 4
-
-Orange 3
-
-Watermelon 5
 
 Notes
 
