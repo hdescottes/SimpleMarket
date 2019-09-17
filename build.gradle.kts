@@ -50,6 +50,6 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-api:$jUnitJupiterVersion")
     testImplementation("org.assertj:assertj-core:$assertJVersion")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$jUnitJupiterVersion")
-    testRuntimeOnly("org.junit.platform:junit-platform-engine:$jUnitPlatformVersion")
+    //testRuntimeOnly("org.junit.platform:junit-platform-engine:$jUnitPlatformVersion")
     //implementation("io.projectreactor:reactor-core:$reactorVersion")
 }
