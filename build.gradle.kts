@@ -9,6 +9,7 @@ val springBootVersion by extra { "2.1.7.RELEASE" }
 val reactorVersion by extra {"3.2.12.RELEASE"}
 val jUnitJupiterVersion by extra {"5.5.2"}
 val assertJVersion by extra {"3.8.0"}
+val jUnitPlatformVersion by extra {"1.5.2"}
 
 buildscript {
     repositories {
@@ -45,8 +46,10 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter:$springBootVersion")
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf:$springBootVersion")
     implementation("org.springframework.boot:spring-boot-starter-web:$springBootVersion")
+    testImplementation("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
     testImplementation("org.junit.jupiter:junit-jupiter-api:$jUnitJupiterVersion")
     testImplementation("org.assertj:assertj-core:$assertJVersion")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$jUnitJupiterVersion")
+    testRuntimeOnly("org.junit.platform:junit-platform-engine:$jUnitPlatformVersion")
     //implementation("io.projectreactor:reactor-core:$reactorVersion")
 }

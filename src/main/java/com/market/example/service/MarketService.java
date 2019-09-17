@@ -6,20 +6,22 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 
+import static com.market.example.constant.FruitConstants.*;
+
 @Service
 public class MarketService {
 
-    private final FruitDto fruitDto;
-
-    public MarketService(FruitDto fruitDto) {
-        this.fruitDto = fruitDto;
+    public MarketService() {
     }
 
     public HashMap<String, Double> createMarket() {
         HashMap<String, Double> items = new HashMap<>();
-        items.put(fruitDto.setName("Apple").getName(), fruitDto.setPrice(FruitConstants.APPLE_PRICE).getPrice());
-        items.put(fruitDto.setName("Orange").getName(), fruitDto.setPrice(FruitConstants.ORANGE_PRICE).getPrice());
-        items.put(fruitDto.setName("Watermelon").getName(), fruitDto.setPrice(FruitConstants.WATERMELON_PRICE).getPrice());
+        FruitDto apple = new FruitDto("Apple", APPLE_PRICE);
+        FruitDto orange = new FruitDto("Orange", ORANGE_PRICE);
+        FruitDto watermelon = new FruitDto("Watermelon", WATERMELON_PRICE);
+        items.put(apple.getName(), apple.getPrice());
+        items.put(orange.getName(), orange.getPrice());
+        items.put(watermelon.getName(), watermelon.getPrice());
         return items;
     }
 }

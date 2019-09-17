@@ -1,16 +1,18 @@
 package com.market.example.model;
 
-import org.springframework.stereotype.Component;
-
 /**
  * Business representation of the fruit
  */
-@Component
 public class FruitDto {
 
     private String name;
 
     private double price;
+
+    public FruitDto(String name, double price) {
+        this.name = name;
+        this.price = price;
+    }
 
     public String getName() {
         return name;
