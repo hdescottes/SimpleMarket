@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Basket List</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+</head>
+<body>
+    <h1>Basket List</h1>
+    <br/><br/>
+    <div>
+        <table border="1">
+            <tr>
+                <th>Item</th>
+                <th>Total (£)</th>
+            </tr>
+            <tr th:each ="fruit : ${map.entrySet()}">
+                <td id="name" th:utext="${fruit.key}">...</td>
+                <td id="total" th:utext="${fruit.value}">...</td>
+            </tr>
+        </table>
+    </div>
+    <br><br/>
+</body>
+</html>
