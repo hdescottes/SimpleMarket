@@ -9,6 +9,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @ApplicationTest
@@ -20,7 +21,7 @@ class DisplayItemsControllerTests {
     private MockMvc mockMvc;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
     }
 
@@ -30,6 +31,13 @@ class DisplayItemsControllerTests {
                 .andExpect(status().isOk())
                 .andExpect(model().attributeExists("items"))
                 .andExpect(view().name("marketList"));
+    }
+
+    @Test
+    void sendBasket_ShouldSucceed() throws Exception {
+        this.mockMvc.perform(post("/"))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(view().name("redirect:/basketList"));
     }
 
     @Test

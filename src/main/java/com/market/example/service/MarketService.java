@@ -1,6 +1,5 @@
 package com.market.example.service;
 
-import com.market.example.constant.FruitConstants;
 import com.market.example.model.FruitDto;
 import org.springframework.stereotype.Service;
 
