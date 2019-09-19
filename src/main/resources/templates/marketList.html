@@ -6,27 +6,27 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
 </head>
 <body>
-    <h1>Market List</h1>
-    <br/><br/>
-    <div>
-        <form action="#" th:action="@{/}" method="post">
-            <table border="1">
-                <tr>
-                    <th>Item</th>
-                    <th>Price (£)</th>
-                    <th>Quantity</th>
-                </tr>
-                <tr th:each ="item : ${items.entrySet()}">
-                    <td id="name" th:utext="${item.key}">...</td>
-                    <td id="price" th:utext="${item.value}">...</td>
-                    <td><input type="number" id="quantity" min="0"></td>
-                </tr>
-            </table>
-            <br><br/>
-            <div>
-                <button type="submit" id="submit">Submit</button>
-            </div>
-        </form>
-    </div>
+<h1>Market List</h1>
+<br/><br/>
+<div>
+    <table border="1">
+        <tr>
+            <th>Item</th>
+            <th>Price (£)</th>
+            <th>Quantity</th>
+        </tr>
+        <tr th:each ="item : ${items.entrySet()}">
+            <td id="name" th:utext="${item.key}">...</td>
+            <td id="price" th:utext="${item.value}">...</td>
+            <td><input type="number" id="quantity" min="0"></td>
+        </tr>
+    </table>
+    <br><br/>
+    <form action="#" th:action="@{/}" method="post">
+        <div>
+            <button type="submit" id="submit">Submit</button>
+        </div>
+    </form>
+</div>
 </body>
 </html>

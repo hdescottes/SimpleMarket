@@ -6,20 +6,26 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
 </head>
 <body>
-    <h1>Basket List</h1>
-    <br/><br/>
-    <div>
-        <table border="1">
-            <tr>
-                <th>Item</th>
-                <th>Total (£)</th>
-            </tr>
-            <tr th:each ="fruit : ${map.entrySet()}">
-                <td id="name" th:utext="${fruit.key}">...</td>
-                <td id="total" th:utext="${fruit.value}">...</td>
-            </tr>
-        </table>
-    </div>
+<h1>Basket List</h1>
+<br/><br/>
+<div>
+    <table border="1">
+        <tr>
+            <th>Item</th>
+            <th>Total (£)</th>
+        </tr>
+        <tr th:each ="fruit : ${map.entrySet()}">
+            <td id="name" th:utext="${fruit.key}">...</td>
+            <td id="total" th:utext="${fruit.value}">...</td>
+        </tr>
+    </table>
     <br><br/>
+    <form action="#" th:action="@{/}" method="get">
+        <div>
+            <button type="submit" id="return">Return</button>
+        </div>
+    </form>
+</div>
+<br><br/>
 </body>
 </html>
