@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,8 +33,8 @@ public class DisplayItemsController {
     }
 
     @PostMapping(value = "/")
-    public String sendBasket(RedirectAttributes redirectAttributes) {
-        HashMap<String, Double> fruits = marketService.createMarket();
+    public String sendBasket(RedirectAttributes redirectAttributes, Model model) {
+        HashMap<String, BigDecimal> fruits = marketService.createMarket();
         redirectAttributes.addAllAttributes(fruits);
 
         return "redirect:/basketList";

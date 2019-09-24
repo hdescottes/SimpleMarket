@@ -1,36 +1,38 @@
 package com.market.example.model;
 
+import java.math.BigDecimal;
+
 /**
  * Business representation of the fruit
  */
 public class Fruit {
 
-    private String name;
+    private Enum name;
 
-    private double price;
+    private BigDecimal price;
 
     private int quantity;
 
-    public Fruit(String name, double price, int quantity) {
+    public Fruit(Enum name, BigDecimal price, int quantity) {
         this.name = name;
         this.price = price;
         this.quantity = quantity;
     }
 
-    public String getName() {
+    public Enum getName() {
         return name;
     }
 
-    public Fruit setName(String name) {
+    public Fruit setName(Enum name) {
         this.name = name;
         return this;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public Fruit setPrice(double price) {
+    public Fruit setPrice(BigDecimal price) {
         this.price = price;
         return this;
     }
