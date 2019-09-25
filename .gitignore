@@ -2,7 +2,6 @@
 /build/
 lib/
 !gradle/wrapper/gradle-wrapper.jar
-/src/main/resources/static/
 *.hprof
 .DS_Store
 
