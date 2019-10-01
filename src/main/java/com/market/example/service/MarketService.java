@@ -1,14 +1,20 @@
 package com.market.example.service;
 
 import com.market.example.discount.AppleDiscount;
+import com.market.example.discount.Discount;
 import com.market.example.discount.WatermelonDiscount;
 import com.market.example.model.Fruit;
+import javafx.util.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static com.market.example.constant.FruitConstants.*;
 import static com.market.example.constant.FruitEnum.*;
@@ -39,21 +45,11 @@ public class MarketService {
         return items;
     }
 
-    public HashMap<String, BigDecimal> discountCalculator(List<Fruit> items) {
-        HashMap<String, BigDecimal> fruitTotal = new HashMap<>();
-        for (Fruit fruit : items) {
-            itemToPricer.findPricer(fruit);
-            if (fruit.getName().equals("Apple")) {
-                if (appleDiscount.isApplicableTo(fruit)) {
-                    fruitTotal.put(fruit.getName().name(), appleDiscount.price(fruit));
-                }
-            }
-            if (fruit.getName().equals("Watermelon")) {
-                if (watermelonDiscount.isApplicableTo(fruit)) {
-                    fruitTotal.put(fruit.getName().name(), watermelonDiscount.price(fruit));
-                }
-            }
-        }
-        return fruitTotal;
+    public Map<String, BigDecimal> discountCalculator(List<Fruit> items) {
+        return items.stream()
+                .map(f -> new Pair<Fruit, Discount>(f, itemToPricer.findPricer(f)))
+                .filter(i -> i.getValue() != null)
+                .filter(d -> d.getValue().isApplicableTo(d.getKey()))
+                .collect(Collectors.toMap(p -> p.getKey().getName().name(), p -> p.getValue().price(p.getKey())));
     }
 }

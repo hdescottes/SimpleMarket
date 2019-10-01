@@ -41,7 +41,7 @@ class MarketServiceTests {
         fruitList.add(new Fruit(APPLE, APPLE_PRICE, 3));
         fruitList.add(new Fruit(ORANGE, ORANGE_PRICE, 5));
         fruitList.add(new Fruit(WATERMELON, WATERMELON_PRICE, 5));
-        HashMap<String , BigDecimal> fruitDiscount = marketService.discountCalculator(fruitList);
+        Map<String , BigDecimal> fruitDiscount = marketService.discountCalculator(fruitList);
         for(Map.Entry<String, BigDecimal> fruit : fruitDiscount.entrySet()) {
             if(fruit.getKey().equals(APPLE.getName()))
                 assertThat(fruit.getValue()).isEqualTo(APPLE_PRICE.multiply(BigDecimal.valueOf(fruitList.get(0).getQuantity() / 2)));

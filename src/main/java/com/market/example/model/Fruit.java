@@ -1,5 +1,7 @@
 package com.market.example.model;
 
+import com.market.example.constant.FruitEnum;
+
 import java.math.BigDecimal;
 
 /**
@@ -7,23 +9,23 @@ import java.math.BigDecimal;
  */
 public class Fruit {
 
-    private Enum name;
+    private FruitEnum name;
 
     private BigDecimal price;
 
     private int quantity;
 
-    public Fruit(Enum name, BigDecimal price, int quantity) {
+    public Fruit(FruitEnum name, BigDecimal price, int quantity) {
         this.name = name;
         this.price = price;
         this.quantity = quantity;
     }
 
-    public Enum getName() {
+    public FruitEnum getName() {
         return name;
     }
 
-    public Fruit setName(Enum name) {
+    public Fruit setName(FruitEnum name) {
         this.name = name;
         return this;
     }
