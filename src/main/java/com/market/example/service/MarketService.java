@@ -42,13 +42,19 @@ public class MarketService {
         return items;
     }
 
-    //FIXME: les fruits sans discount ne sont pas dans la map /!\
     public Map<String, BigDecimal> discountCalculator(List<Fruit> items) {
-        Map<String, BigDecimal> map = new HashMap<>();
         return items.stream()
                 .map(f -> new Pair<>(f, itemToPricer.findPricer(f)))
                 .filter(i -> i.getValue() != null)
                 .filter(d -> d.getValue().isApplicableTo(d.getKey()))
                 .collect(Collectors.toMap(p -> p.getKey().getName().name(), p -> p.getValue().price(p.getKey())));
+    }
+
+    //FIXME: Simplify this into the previous one
+    public Map<String, BigDecimal> hasNoDiscount(List<Fruit> items) {
+        return items.stream()
+                .map(f -> new Pair<>(f, itemToPricer.findPricer(f)))
+                .filter(i -> i.getValue() == null)
+                .collect(Collectors.toMap(p -> p.getKey().getName().name(), p -> p.getKey().getPrice().multiply(BigDecimal.valueOf(p.getKey().getQuantity()))));
     }
 }

@@ -60,7 +60,9 @@ public class DisplayItemsController {
         for(Map.Entry<String, Fruit> fruit : fruits.entrySet()) {
             fruitList.add(fruit.getValue());
         }
-        model.addAttribute("map", marketService.discountCalculator(fruitList));
+        Map<String, BigDecimal> map = marketService.discountCalculator(fruitList);
+        map.putAll(marketService.hasNoDiscount(fruitList));
+        model.addAttribute("map", map);
         return "basketList";
     }
 }
