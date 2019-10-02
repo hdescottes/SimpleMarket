@@ -7,7 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -38,6 +37,7 @@ public class DisplayItemsController {
         model.addAttribute("items", marketService.createMarket());
         return "marketList";
     }
+
 
     //FIXME: Récupérer les valeurs depuis l'IHM
     @PostMapping(value = "/")
