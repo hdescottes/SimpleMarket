@@ -11,10 +11,8 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static com.market.example.constant.FruitConstants.*;
 import static com.market.example.constant.FruitEnum.*;
@@ -42,13 +40,12 @@ public class DisplayItemsController {
     //FIXME: Récupérer les valeurs depuis l'IHM
     @PostMapping(value = "/")
     public String sendBasket(RedirectAttributes redirectAttributes, Model model) {
-        Fruit apple = new Fruit(APPLE, APPLE_PRICE, 5);
-        Fruit orange = new Fruit(ORANGE, ORANGE_PRICE, 3);
-        Fruit watermelon = new Fruit(WATERMELON, WATERMELON_PRICE, 3);
-        HashMap<String, Fruit> fruits = new HashMap<>();
-        fruits.put(apple.getName().name(), apple);
-        fruits.put(orange.getName().name(), orange);
-        fruits.put(watermelon.getName().name(), watermelon);
+        List<Fruit> fruitList = new ArrayList<>(Arrays.asList(
+                new Fruit(APPLE, APPLE_PRICE, 5),
+                new Fruit(ORANGE, ORANGE_PRICE, 3),
+                new Fruit(WATERMELON, WATERMELON_PRICE, 3)));
+        Map<String, Fruit> fruits = fruitList.stream()
+                .collect(Collectors.toMap(f -> f.getName().name(), f -> f));
         redirectAttributes.addFlashAttribute("fruits", fruits);
 
         return "redirect:/basketList";

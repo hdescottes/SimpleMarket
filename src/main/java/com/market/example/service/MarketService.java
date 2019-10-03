@@ -8,9 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static com.market.example.constant.FruitConstants.*;
@@ -31,15 +29,13 @@ public class MarketService {
     public MarketService() {
     }
 
-    public HashMap<String, BigDecimal> createMarket() {
-        HashMap<String, BigDecimal> items = new HashMap<>();
-        Fruit apple = new Fruit(APPLE, APPLE_PRICE, 0);
-        Fruit orange = new Fruit(ORANGE, ORANGE_PRICE, 0);
-        Fruit watermelon = new Fruit(WATERMELON, WATERMELON_PRICE, 0);
-        items.put(apple.getName().name(), apple.getPrice());
-        items.put(orange.getName().name(), orange.getPrice());
-        items.put(watermelon.getName().name(), watermelon.getPrice());
-        return items;
+    public Map<String, BigDecimal> createMarket() {
+        List<Fruit> fruitList = new ArrayList<>(Arrays.asList(
+                new Fruit(APPLE, APPLE_PRICE, 0),
+                new Fruit(ORANGE, ORANGE_PRICE, 0),
+                new Fruit(WATERMELON, WATERMELON_PRICE, 0)));
+        return fruitList.stream()
+                .collect(Collectors.toMap(f -> f.getName().name(), Fruit::getPrice));
     }
 
     public Map<String, BigDecimal> discountCalculator(List<Fruit> items) {

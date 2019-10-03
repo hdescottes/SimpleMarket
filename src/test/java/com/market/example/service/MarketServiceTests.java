@@ -7,10 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Stream;
 
 import static com.market.example.constant.FruitConstants.*;
 import static com.market.example.constant.FruitEnum.*;
@@ -28,7 +26,7 @@ class MarketServiceTests {
 
     @Test
     void createMarket_ShouldSucceed() {
-        HashMap<String, BigDecimal> items = marketService.createMarket();
+        Map<String, BigDecimal> items = marketService.createMarket();
         assertEquals(3, items.size());
         assertThat(items.containsKey(APPLE.toString())).isTrue();
         assertThat(items.containsKey(ORANGE.toString())).isTrue();
@@ -37,10 +35,10 @@ class MarketServiceTests {
 
     @Test
     void discountCalculator_ShouldSucceed() {
-        List<Fruit> fruitList = new ArrayList<>();
-        fruitList.add(new Fruit(APPLE, APPLE_PRICE, 3));
-        fruitList.add(new Fruit(ORANGE, ORANGE_PRICE, 5));
-        fruitList.add(new Fruit(WATERMELON, WATERMELON_PRICE, 5));
+        List<Fruit> fruitList = new ArrayList<>(Arrays.asList(
+                new Fruit(APPLE, APPLE_PRICE, 3),
+                new Fruit(ORANGE, ORANGE_PRICE, 5),
+                new Fruit(WATERMELON, WATERMELON_PRICE, 5)));
         Map<String , BigDecimal> fruitDiscount = marketService.discountCalculator(fruitList);
         for(Map.Entry<String, BigDecimal> fruit : fruitDiscount.entrySet()) {
             if(fruit.getKey().equals(APPLE.getName()))
