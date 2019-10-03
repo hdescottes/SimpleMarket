@@ -10,6 +10,7 @@ val reactorVersion by extra {"3.2.12.RELEASE"}
 val jUnitJupiterVersion by extra {"5.5.2"}
 val assertJVersion by extra {"3.8.0"}
 val jUnitPlatformVersion by extra {"1.5.2"}
+val apacheCommonsLangVersion by extra {"3.9"}
 
 buildscript {
     repositories {
@@ -43,6 +44,7 @@ repositories {
 }
 
 dependencies {
+    implementation("org.apache.commons:commons-lang3:$apacheCommonsLangVersion")
     implementation("org.springframework.boot:spring-boot-starter:$springBootVersion")
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf:$springBootVersion")
     implementation("org.springframework.boot:spring-boot-starter-web:$springBootVersion")

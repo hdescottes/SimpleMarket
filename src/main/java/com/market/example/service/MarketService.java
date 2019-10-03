@@ -3,7 +3,7 @@ package com.market.example.service;
 import com.market.example.discount.AppleDiscount;
 import com.market.example.discount.WatermelonDiscount;
 import com.market.example.model.Fruit;
-import javafx.util.Pair;
+import org.apache.commons.lang3.tuple.MutablePair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,7 +44,7 @@ public class MarketService {
 
     public Map<String, BigDecimal> discountCalculator(List<Fruit> items) {
         return items.stream()
-                .map(f -> new Pair<>(f, itemToPricer.findPricer(f)))
+                .map(f -> new MutablePair<>(f, itemToPricer.findPricer(f)))
                 .filter(i -> i.getValue() != null)
                 .filter(d -> d.getValue().isApplicableTo(d.getKey()))
                 .collect(Collectors.toMap(p -> p.getKey().getName().name(), p -> p.getValue().price(p.getKey())));
@@ -53,7 +53,7 @@ public class MarketService {
     //FIXME: Simplify this into the previous one
     public Map<String, BigDecimal> hasNoDiscount(List<Fruit> items) {
         return items.stream()
-                .map(f -> new Pair<>(f, itemToPricer.findPricer(f)))
+                .map(f -> new MutablePair<>(f, itemToPricer.findPricer(f)))
                 .filter(i -> i.getValue() == null)
                 .collect(Collectors.toMap(p -> p.getKey().getName().name(), p -> p.getKey().getPrice().multiply(BigDecimal.valueOf(p.getKey().getQuantity()))));
     }
