@@ -1,6 +1,7 @@
 package com.market.example.controller;
 
 import com.market.example.model.Fruit;
+import com.market.example.model.FruitListWrapper;
 import com.market.example.repository.FruitRepository;
 import com.market.example.service.MarketService;
 import org.springframework.stereotype.Controller;
@@ -13,18 +14,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-
-import static com.market.example.constant.FruitConstants.APPLE_PRICE;
-import static com.market.example.constant.FruitConstants.ORANGE_PRICE;
-import static com.market.example.constant.FruitConstants.WATERMELON_PRICE;
-import static com.market.example.constant.FruitEnum.APPLE;
-import static com.market.example.constant.FruitEnum.ORANGE;
-import static com.market.example.constant.FruitEnum.WATERMELON;
 
 @Controller
 public class DisplayItemsController {
@@ -47,19 +40,15 @@ public class DisplayItemsController {
 
     @GetMapping(value = "/")
     public String retrieveMarketItems(Model model) {
-        model.addAttribute("items", fruitRepository.findAll());
+        FruitListWrapper wrapper = new FruitListWrapper((List<Fruit>) fruitRepository.findAll());
+        model.addAttribute("wrapper", wrapper);
         return "marketList";
     }
 
 
-    //TODO: Retrieve and save quantity values
     @PostMapping(value = "/")
-    public String sendBasket(RedirectAttributes redirectAttributes, Model model) {
-        List<Fruit> fruitList = new ArrayList<>(Arrays.asList(
-                new Fruit(APPLE, APPLE_PRICE, 5),
-                new Fruit(ORANGE, ORANGE_PRICE, 3),
-                new Fruit(WATERMELON, WATERMELON_PRICE, 3)));
-        Map<String, Fruit> fruits = fruitList.stream()
+    public String sendBasket(@ModelAttribute FruitListWrapper wrapper, RedirectAttributes redirectAttributes, Model model) {
+        Map<String, Fruit> fruits = wrapper.getFruitList().stream()
                 .collect(Collectors.toMap(Fruit::getName, f -> f));
         redirectAttributes.addFlashAttribute("fruits", fruits);
 

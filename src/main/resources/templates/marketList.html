@@ -9,17 +9,17 @@
     <h1>Market List</h1>
     <br/><br/>
     <div>
-        <form action="#" th:action="@{/}" method="post">
+        <form action="#" th:action="@{/}" th:object="${wrapper}" method="post">
             <table border="1">
                 <tr>
                     <th>Item</th>
                     <th>Price (£)</th>
                     <th>Quantity</th>
                 </tr>
-                <tr th:each ="item : ${items}">
-                    <td id="name" th:utext="${item.name}">...</td>
-                    <td id="price" th:utext="${item.price}">...</td>
-                    <td><input type="number" id="quantity" th:value="${item.quantity}" min="0"/></td>
+                <tr th:each ="item, itemStat : ${wrapper.fruitList}">
+                    <td><input id="name" th:name="|fruitList[${itemStat.index}].name|" th:value="${item.getName()}" readonly/></td>
+                    <td><input id="price" th:name="|fruitList[${itemStat.index}].price|" th:value="${item.getPrice()}" readonly/></td>
+                    <td><input type="number" id="quantity" th:name="|fruitList[${itemStat.index}].quantity|" th:value="${item.getQuantity()}" min="0"/></td>
                 </tr>
             </table>
             <br><br/>
