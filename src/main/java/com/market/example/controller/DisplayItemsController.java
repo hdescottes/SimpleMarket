@@ -47,7 +47,7 @@ public class DisplayItemsController {
 
 
     @PostMapping(value = "/")
-    public String sendBasket(@ModelAttribute FruitListWrapper wrapper, RedirectAttributes redirectAttributes, Model model) {
+    public String sendBasket(@ModelAttribute("wrapper") FruitListWrapper wrapper, RedirectAttributes redirectAttributes, Model model) {
         Map<String, Fruit> fruits = wrapper.getFruitList().stream()
                 .collect(Collectors.toMap(Fruit::getName, f -> f));
         redirectAttributes.addFlashAttribute("fruits", fruits);
