@@ -16,10 +16,10 @@
                     <th>Price (£)</th>
                     <th>Quantity</th>
                 </tr>
-                <tr th:each ="item : ${items.entrySet()}">
-                    <td id="name" th:utext="${item.key}">...</td>
-                    <td id="price" th:utext="${item.value}">...</td>
-                    <td><input type="number" id="quantity" min="0" /></td>
+                <tr th:each ="item : ${items}">
+                    <td id="name" th:utext="${item.name}">...</td>
+                    <td id="price" th:utext="${item.price}">...</td>
+                    <td><input type="number" id="quantity" th:value="${item.quantity}" min="0"/></td>
                 </tr>
             </table>
             <br><br/>

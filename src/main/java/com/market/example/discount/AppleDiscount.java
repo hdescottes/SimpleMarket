@@ -17,7 +17,7 @@ public class AppleDiscount implements Discount{
     @Override
     public boolean isApplicableTo(Fruit fruit) {
         return Stream.of(fruit)
-                .filter(f -> f.getName().equals(APPLE))
+                .filter(f -> f.getName().equals(APPLE.getName()))
                 .anyMatch(f -> f.getQuantity() >= 1);
     }
 

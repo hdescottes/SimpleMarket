@@ -8,11 +8,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
-import static com.market.example.constant.FruitConstants.*;
-import static com.market.example.constant.FruitEnum.*;
+import static com.market.example.constant.FruitConstants.APPLE_PRICE;
+import static com.market.example.constant.FruitConstants.ORANGE_PRICE;
+import static com.market.example.constant.FruitConstants.WATERMELON_PRICE;
+import static com.market.example.constant.FruitEnum.APPLE;
+import static com.market.example.constant.FruitEnum.ORANGE;
+import static com.market.example.constant.FruitEnum.WATERMELON;
 
 @Service
 public class MarketService {
@@ -29,13 +36,11 @@ public class MarketService {
     public MarketService() {
     }
 
-    public Map<String, BigDecimal> createMarket() {
-        List<Fruit> fruitList = new ArrayList<>(Arrays.asList(
+    public List<Fruit> createMarket() {
+         return new ArrayList<>(Arrays.asList(
                 new Fruit(APPLE, APPLE_PRICE, 0),
                 new Fruit(ORANGE, ORANGE_PRICE, 0),
                 new Fruit(WATERMELON, WATERMELON_PRICE, 0)));
-        return fruitList.stream()
-                .collect(Collectors.toMap(f -> f.getName().name(), Fruit::getPrice));
     }
 
     public Map<String, BigDecimal> discountCalculator(List<Fruit> items) {
@@ -43,7 +48,7 @@ public class MarketService {
                 .map(f -> new ImmutablePair<>(f, itemToPricer.findPricer(f)))
                 .filter(i -> i.getValue() != null)
                 .filter(d -> d.getValue().isApplicableTo(d.getKey()))
-                .collect(Collectors.toMap(p -> p.getKey().getName().name(), p -> p.getValue().price(p.getKey())));
+                .collect(Collectors.toMap(p -> p.getKey().getName(), p -> p.getValue().price(p.getKey())));
     }
 
     //FIXME: Simplify this into the previous one
@@ -51,6 +56,6 @@ public class MarketService {
         return items.stream()
                 .map(f -> new ImmutablePair<>(f, itemToPricer.findPricer(f)))
                 .filter(i -> i.getValue() == null)
-                .collect(Collectors.toMap(p -> p.getKey().getName().name(), p -> p.getKey().getPrice().multiply(BigDecimal.valueOf(p.getKey().getQuantity()))));
+                .collect(Collectors.toMap(p -> p.getKey().getName(), p -> (p.getKey().getPrice().multiply(BigDecimal.valueOf(p.getKey().getQuantity())))));
     }
 }

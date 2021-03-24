@@ -17,7 +17,7 @@ public class WatermelonDiscount implements Discount {
     @Override
     public boolean isApplicableTo(Fruit fruit) {
         return Stream.of(fruit)
-                .filter(f -> f.getName().equals(WATERMELON))
+                .filter(f -> f.getName().equals(WATERMELON.getName()))
                 .anyMatch(f -> f.getQuantity() >= 3);
     }
 

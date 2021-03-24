@@ -5,7 +5,8 @@
  * Learn how to create Gradle builds at https://guides.gradle.org/creating-new-gradle-builds
  */
 
-val springBootVersion by extra { "2.1.7.RELEASE" }
+val springBootVersion by extra {"2.1.7.RELEASE"}
+val h2DatabaseVersion by extra {"1.4.200"}
 val reactorVersion by extra {"3.2.12.RELEASE"}
 val jUnitJupiterVersion by extra {"5.3.2"} // can't upgrade to latest version -- tests will not work
 val assertJVersion by extra {"3.15.0"}
@@ -46,8 +47,10 @@ repositories {
 dependencies {
     implementation("org.apache.commons:commons-lang3:$apacheCommonsLangVersion")
     implementation("org.springframework.boot:spring-boot-starter:$springBootVersion")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa:$springBootVersion")
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf:$springBootVersion")
     implementation("org.springframework.boot:spring-boot-starter-web:$springBootVersion")
+    implementation("com.h2database:h2:$h2DatabaseVersion")
     testImplementation("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
     testImplementation("org.junit.jupiter:junit-jupiter-api:$jUnitJupiterVersion")
     testImplementation("org.assertj:assertj-core:$assertJVersion")
