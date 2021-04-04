@@ -29,3 +29,9 @@
 #### Notes
 
 <p>This application is using SpringBoot and have pseudo REST API (localhost:8080).</p>
+
+-------
+<p align="center">
+    <img src="src/main/resources/preview/market_list.png" width="400" height="200">
+    <img src="src/main/resources/preview/basket_list.png" width="400" height="200">
+</p>
