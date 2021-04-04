@@ -1,31 +1,35 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8" />
-    <title>Basket List</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
-</head>
-<body>
-<h1>Basket List</h1>
-<br/><br/>
-<div>
-    <table border="1">
-        <tr>
-            <th>Item</th>
-            <th>Total (£)</th>
-        </tr>
-        <tr th:each ="fruit : ${map.entrySet()}">
-            <td id="name" th:utext="${fruit.key}">...</td>
-            <td id="total" th:utext="${fruit.value}">...</td>
-        </tr>
-    </table>
-    <br><br/>
-    <form action="#" th:action="@{/}" method="get">
-        <div>
-            <button type="submit" id="return">Return</button>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Basket List</title>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Basket List</h1>
+            <br/><br/>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Total (£)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each ="fruit : ${map.entrySet()}">
+                        <td id="name" th:utext="${fruit.key}">...</td>
+                        <td id="total" th:utext="${fruit.value}">...</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br><br/>
+            <form action="#" th:action="@{/}" method="get">
+                <div>
+                    <button type="submit" id="return">Return</button>
+                </div>
+            </form>
         </div>
-    </form>
-</div>
-<br><br/>
-</body>
+        <br><br/>
+    </body>
 </html>
